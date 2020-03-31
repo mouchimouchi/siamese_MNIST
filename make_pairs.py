@@ -79,10 +79,10 @@ def make_different_pairs(img_list):
 
     pairs = []
     for i in range(num_pairs):
-        category1 = random.randint(0, 9)
-        category2 = random.randint(0, 9)
+        category1 = random.randint(0, 7)
+        category2 = random.randint(0, 7)
         while category1 == category2:
-            category2 = random.randint(0, 9)
+            category2 = random.randint(0, 7)
 
         img1 = random.choice(img_list[category1])
         img2 = random.choice(img_list[category2])

@@ -24,17 +24,31 @@ if __name__ == "__main__":
     import torch.optim as optim
     import numpy as np
     import random
+    import argparse
 
     from make_pairs import *
     from model import *
     from train import *
     from test import *
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model', type=str, default='CNN',
+                        help='MLP or CNN')
+    args = parser.parse_args()
+
+    model_name = args.model
+
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     trainset, testset = load_MNIST()
 
-    model = siamese_MLP()
+    if model_name == "MLP":
+        print("MLP is selected")
+        model = siamese_MLP()
+    else:
+        model = siamese_CNN()
+        print("CNN is selected")
+
     model.to(device)
     pair_trainset, pair_trainloader = make_pairloader(trainset, 5,
                                                       "train")

@@ -77,3 +77,5 @@ class siamese_CNN(nn.Module):
         distance = F.l1_loss(x1, x2, reduction='none')
         out = self.fc(distance)
         out = self.sigmoid(out)
+
+        return out

@@ -2,7 +2,7 @@
 cf. https://www.cs.utoronto.ca/~gkoch/files/msc-thesis.pdf
 
 * command 
-<br>python main.py
+<br>python main.py --model [CNN or MLP]
 
 <h3> training </h3>
 
