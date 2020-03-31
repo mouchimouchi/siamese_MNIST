@@ -11,6 +11,7 @@ import random
 
 from make_pairs import *
 
+
 def oneshot(model, testset):
     # 学習していない 8,9 の画像について、1枚ずつサンプル画像をとってきて、8と9 の画像を分類させる。 (デタラメだと、accuracy 0.5)
     model.eval()
@@ -18,7 +19,8 @@ def oneshot(model, testset):
     imgs = categorize_data(testset, num_test, "test")
     with torch.no_grad():
         num_accurate = np.array([0, 0])
-        sample_img_8 = imgs[8][0]  # 8と9のサンプル画像を 1枚ずつとってきて、testset の8,9 のそれぞれの画像がどちらに近いかを判断する。
+        # 8と9のサンプル画像を 1枚ずつとってきて、testset の8,9 のそれぞれの画像がどちらに近いかを判断する。
+        sample_img_8 = imgs[8][0]
         # print(sample_img_8)
         sample_img_9 = imgs[9][0]
         for i in range(len(imgs[8]) - 1):
@@ -33,7 +35,8 @@ def oneshot(model, testset):
                     num_accurate[j - 8] += 1
 
     accuracy = num_accurate / num_test
-    print("accuracy when '8' is input: {}, accuracy when '9' is input: {}".format(accuracy[0], accuracy[1]))
+    print("accuracy when '8' is input: {}, accuracy when '9' is input: {}".format(
+        accuracy[0], accuracy[1]))
     return accuracy
 
 
@@ -50,4 +53,3 @@ def oneshot_mean(model, testset):
     print("average accuracy")
     print(accuracy_mean)
     return accuracy_mean
-

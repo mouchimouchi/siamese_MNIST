@@ -2,7 +2,7 @@
 cf. https://www.cs.utoronto.ca/~gkoch/files/msc-thesis.pdf
 
 * command 
-<br>main.py
+<br>python main.py
 
 <h3> training </h3>
 

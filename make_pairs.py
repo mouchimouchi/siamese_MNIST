@@ -10,7 +10,6 @@ import numpy as np
 import random
 
 
-
 def categorize_data(dataset, num_each, mode):  # ラベルごとにnum_each ずつとってくる
     count = [0 for i in range(10)]
     if mode == "train":
@@ -104,8 +103,9 @@ def make_pairloader(dataset, num_each, mode):
     # print(different_pairs[0])
     assert len(same_pairs) == len(different_pairs)
 
-    tensor_pairs_data = torch.zeros([len(same_pairs) * 2, 2, img_size[0], img_size[1],
-                                     img_size[2]])  # number of pairs (same + different),2,channel,height,width
+    tensor_pairs_data = torch.zeros([len(same_pairs) * 2, 2, img_size[0],
+                                     img_size[1], img_size[2]])
+    # number of pairs (same + different),2,channel,height,width
     pairs_label = []
 
     for i in range(len(same_pairs)):
@@ -120,7 +120,9 @@ def make_pairloader(dataset, num_each, mode):
     tensor_pairs_label = torch.tensor(pairs_label)
     # print(tensor_pairs_label.size())
 
-    pairset = torch.utils.data.TensorDataset(tensor_pairs_data, tensor_pairs_label)
-    pairloader = torch.utils.data.DataLoader(pairset, batch_size=4, shuffle=False, num_workers=2)
+    pairset = torch.utils.data.TensorDataset(
+        tensor_pairs_data, tensor_pairs_label)
+    pairloader = torch.utils.data.DataLoader(
+        pairset, batch_size=4, shuffle=False, num_workers=2)
 
     return pairset, pairloader
